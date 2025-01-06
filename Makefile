@@ -7,3 +7,6 @@ install:
 	ln -s $(PWD) $(CONFIG_DIR)
 uninstall:
 	rm $(CONFIG_DIR)
+
+build: kitty.conf
+	kill -SIGUSR1 $(KITTY_PID)
