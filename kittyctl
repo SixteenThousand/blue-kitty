@@ -1,0 +1,14 @@
+#!/bin/sh
+
+new_theme="$(command ls ./themes | fzf)"
+
+if [ -z "$new_theme" ]
+then
+	echo -e "\e[1;33mGuess we're not doing that then...\e[0m"
+	exit 1
+fi
+
+cat "./themes/$new_theme" > ./theme.conf
+echo $KITTY_PID
+kill -s USR1 $KITTY_PID
+echo -e "\e[1;32mNew theme is $new_theme!\e[0m"
